@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import ContainerDigitar from '../componentes/ContainerDigitar.jsx'
 import Postagem from '../componentes/Postagem.jsx';
-import ContainerSenha from '../componentes/ContainerSenha.jsx';
-import ReactDOM from 'react-dom/client'
+
+
  function HomePage(){
    
     var [posts,setPosts] = useState([]);

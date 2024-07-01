@@ -6,6 +6,15 @@
   
     
 }
+.textoEsqueceu{
+  margin-left: 160px; 
+  font-size: 13px; 
+  cursor: pointer;
+}
+.textoEsqueceu:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
 .botaoCriar{
     background-color: slateblue;
     margin-top:20px;
@@ -37,6 +46,10 @@
     transform: translate(-50%, -50%);
    
 
+}
+.hooverTexto:hover{
+  text-decoration: underline;
+  cursor: pointer;
 }
 .textoAviso{
     font-size: 13px;

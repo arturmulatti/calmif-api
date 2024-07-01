@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\ModelValidacao;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Crypt;
+use PhpParser\Node\Stmt\Catch_;
 class ValidacaoController extends Controller
 {
     private $validacao;
@@ -20,25 +22,35 @@ class ValidacaoController extends Controller
     }
     public function index()
     {
+        try{
         $validacao = DB::table('validacao')->orderBy("id", "desc")->first();
 
         $user = DB::table('users')->where('email', $validacao->email)->first();
-         echo($validacao->email);
-         echo($user->email);
-        if (strcmp($user->password,$validacao->password) ==0) {
+         
+        
+       
+     
+
+        if (password_verify($validacao->password,$user->password) ==1) {
             DB::table('validacao')->where("id", $validacao->id)->update(["resultado" => "1"]);
+            echo(1);
             $validacao = DB::table('validacao')->orderBy("id", "desc")->first();
-           
-            echo($validacao->resultado);
+            
+            
             return view('login');
         } else {
 
             DB::table('validacao')->where("id", $validacao->id)->update(["resultado" => "0"]);
             $validacao = DB::table('validacao')->orderBy("id", "desc")->first();
-            echo($validacao->resultado);
+            echo(0);
             return view('login');
         }
+    }catch(Exception $e){
+        echo(0);
     }
+      
+}
+    
 
     /**
      * Show the form for creating a new resource.

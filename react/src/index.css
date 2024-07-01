@@ -6,7 +6,8 @@
 }
 
 body{
-background-color: #111417;;
+background-color: #111417;
+
 color: azure;
 }
 button{
@@ -156,6 +157,30 @@ margin-top: 5px;
    background-color:rgba(105, 90, 205, 0.899);
   border: rgba(105, 90, 205, 0.822);
 
+}
+.iconeComentario{
+  color: slateblue;
+ 
+fill: slateblue;
+ width: 50px;
+ height: 28px;
+ 
+}
+.botaoComentario{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+ 
+ margin-top: 5px;
+  border-radius: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.botaoComentario:hover{
+  background-color: rgba(239, 225, 225, 0.066);
+  
 }
 .botoesConfirmar{
   background-color: green;
