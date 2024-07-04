@@ -6,6 +6,8 @@ import ContainerDigitar from '../componentes/ContainerDigitar.jsx'
 import Postagem from '../componentes/Postagem.jsx';
 
 
+
+
  function HomePage(){
    
     var [posts,setPosts] = useState([]);
@@ -41,9 +43,10 @@ import Postagem from '../componentes/Postagem.jsx';
   posts.map(function(val){
         return(
            
-            <Postagem key= {val.id} titulo = {val.titulo} texto = {val.conteudo} idConteudo = {val.id}/>
-         
-            
+            <Postagem key= {val.id} titulo = {val.titulo} texto = {val.conteudo}   idConetudo= {val.id} />
+           
+           
+        
         )
         
     }

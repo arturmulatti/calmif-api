@@ -1,0 +1,12 @@
+GET http://localhost:8000/Comentarios HTTP/1.1
+content-type: application/json
+
+###
+
+POST http://localhost:8000/login HTTP/1.1
+content-type: application/json
+
+{
+"email": "artur3elton@gmail.com", 
+"password": "Mimi99887765*" 
+}

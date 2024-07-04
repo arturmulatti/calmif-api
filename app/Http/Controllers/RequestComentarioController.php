@@ -3,43 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\ModelPost;
-use App\Models\User;
 use App\Models\ModelRequestComentario;
-use Illuminate\Support\Facades\DB;
-use League\CommonMark\Node\Block\Document;
+use Illuminate\Http\Request;
 
-class BookController extends Controller
+class RequestComentarioController extends Controller
 {
-
-    private $User;
-    private $Post;
-
-    public function __construct()
-    {
-        $this->objUser = new User();
-        $this->objPost = new ModelPost();
-
-    }
-
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $post = $this->objPost->all();
-        return view('index', compact('post'));
-    }
-    public function Comentarios()
-    {
-        $requestPost = DB::table('requestcomentario')->orderBy("id","desc")->first();
-        $post = DB::table('post')->where("id",11)->first();
-        
-        return view('Comentarios', compact("post"));
-        ////Tentar renderizar a função em uma rota, para gerar o comentario especifico
-
+        //
     }
 
     /**
@@ -47,8 +21,7 @@ class BookController extends Controller
      */
     public function create()
     {
-
-
+        //
     }
 
     /**
@@ -56,10 +29,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $postagem = new ModelPost();
-        $postagem->titulo = $request->input('titulo');
-        $postagem->conteudo = $request->input('conteudo');
-        $postagem->id_user = $request->input('id_user');
+        $postagem = new ModelRequestComentario();
+        $postagem->id_comentario = $request->input('id_comentario');
+        
         $postagem->save();
 
         return response()->json(
@@ -68,7 +40,6 @@ class BookController extends Controller
                 'message' => "Post criado"
             ]
         );
-
     }
 
     /**

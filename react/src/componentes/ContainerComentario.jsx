@@ -7,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import ComentarioPequeno from "./ComentarioPequeno";
 import { useEffect } from "react";
+import { Box, Grid } from "@mui/material";
 export default function ContainerComentario({abrirComentario,detailsRef}){
 const [dados, setDados] = useState([])
   
@@ -39,14 +40,19 @@ const [dados, setDados] = useState([])
           <Typography color="black" style={{textAlign: "center", width: "100%",fontSize:"25px",color:"aliceblue"}} > Comentários</Typography>
           
         </AccordionSummary>
+
         <AccordionDetails >
+          <Box sx={{flexGrow:1}}>
+<Grid container spacing={3}>
+
+
         {
   
   dados.map(function(val){
         return(
-           
+           <Grid item xs = {12} sm= {6} md = {3} lg = {2} >
             <ComentarioPequeno key= {val.id} textoComentario = {val.conteudo} />
-         ///Lembrar de atribuir o array com os dados no map, e depois renderizar cada comentario
+        </Grid>
             
         )
         
@@ -54,6 +60,8 @@ const [dados, setDados] = useState([])
     )
     
 }
+</Grid>
+     </Box>
         
         <div id = "rootComentario"ref={detailsRef}></div>
         </AccordionDetails>

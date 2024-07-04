@@ -1,5 +1,5 @@
 import { Route, Router, createBrowserRouter,BrowserRouter} from "react-router-dom";
-import Login from "./views/Login.jsx";
+import Login from "./views/login.jsx";
 import NotFound from "./views/NotFound";
 import CriarConta from "./views/CriarConta.jsx";
 import ModeloComentario from "./views/ModeloComentario.jsx";
@@ -19,11 +19,8 @@ const router =  createBrowserRouter([
  element: <HomePage/>
 }
 ,
-{
-path:'/Comentario',
-element:<ModeloComentario/>
-}
-,
+
+
 {
     path: '*',
     element: <NotFound/>
@@ -32,7 +29,12 @@ element:<ModeloComentario/>
 {
     path: '/CriarConta',
     element: <CriarConta/>
+},
+{
+    path: '/Comentario',
+    element: <ModeloComentario/>
 }
+
 ]
 
 )

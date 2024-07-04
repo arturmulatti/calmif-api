@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comentario', function (Blueprint $table) {
+        Schema::create('requestComentario', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('conteudo');
-            $table->foreignId('id_post')->references('id')->on('post')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_user')->references('id')->on('users')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            
+            
+            
+            $table->foreignId('id_comentario')->references('id')->on('comentario')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comentario');
+        Schema::dropIfExists('requestComentario');
     }
 };
