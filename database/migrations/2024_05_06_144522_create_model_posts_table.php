@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('titulo');
             $table->string('conteudo');
             
-            $table->foreignId('id_user')->references('id')->on('users')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            
             $table->timestamps();
         });
     }
