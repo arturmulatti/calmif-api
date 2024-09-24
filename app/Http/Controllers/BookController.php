@@ -29,8 +29,12 @@ class BookController extends Controller
      */
     public function index()
     {
-        $post = $this->objPost->all();
-        return view('index', compact('post'));
+        // Seleciona os dois últimos posts com a coluna 'aprovado' nula, ordenados por 'id' ou data de criação
+        $posts = ModelPost::where('aprovado',1)
+                          ->get(); // Obtém os resultados
+    
+        // Retorna os posts em formato JSON
+        return response()->json($posts);
     }
     public function Comentarios()
     {
@@ -59,7 +63,8 @@ class BookController extends Controller
         $postagem = new ModelPost();
         $postagem->titulo = $request->input('titulo');
         $postagem->conteudo = $request->input('conteudo');
-        $postagem->id_user = $request->input('id_user');
+        $postagem->aprovado = $request->input('aprovado');
+       
         $postagem->save();
 
         return response()->json(
@@ -70,18 +75,48 @@ class BookController extends Controller
         );
 
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function pesquisarPost($texto){
+        $postagem = ModelPost::where('titulo', 'LIKE', "%{$texto}%")
+                             ->orWhere('conteudo', 'LIKE', "%{$texto}%")
+                             ->get();
+        return response()->json($postagem);
     }
-
     /**
      * Show the form for editing the specified resource.
      */
+    public function buscarAprovacao() {
+        // Seleciona os dois últimos posts com a coluna 'aprovado' nula, ordenados por 'id' ou data de criação
+        $posts = ModelPost::whereNull('aprovado')
+                        
+                          ->take(2) // Limita a 2 posts
+                          ->get(); // Obtém os resultados
+    
+        // Retorna os posts em formato JSON
+        return response()->json($posts);
+    }
+    public function aprovarPost(Request $request, $id)
+    {
+        // Validação: garante que o campo 'aprovado' é obrigatório e booleano
+        $validatedData = $request->validate([
+            'aprovado' => 'required|boolean'
+        ]);
+    
+        // Encontrar o post pelo ID usando Eloquent
+        $post = ModelPost::find($id);
+    
+        // Verifica se o post existe
+        if (!$post) {
+            return response()->json(['message' => 'Post não encontrado'], 404);
+        }
+    
+        // Atualiza o campo 'aprovado' com o valor recebido
+        $post->aprovado = $request->input('aprovado');
+        $post->save(); // Salva a alteração no banco de dados
+    
+        // Retorna uma resposta indicando sucesso
+        return response()->json(['message' => 'Post aprovado com sucesso', 'post' => $post], 200);
+    }
+    
     public function edit(string $id)
     {
         //

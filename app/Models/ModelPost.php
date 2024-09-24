@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ModelPost extends Model
 {
     protected $table = 'post';
-    protected $fillable = ['titulo','conteudo','id_user'];
+    protected $fillable = ['titulo','conteudo','aprovado'];
     use HasFactory;
-    function relUser(){
-        return $this->hasOne('app\\Models\\User','id','id_user');
-    }
+    
 }

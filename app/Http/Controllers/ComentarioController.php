@@ -39,8 +39,8 @@ class ComentarioController extends Controller
     {
         $postagem = new ModelComentario();
          $postagem->conteudo =  $request->input('conteudo');
-         $postagem->id_post = $request->input("id_post");
-         $postagem->id_user = $request->input('id_user');
+         $postagem->post_id = $request->input("post_id");
+        
         $postagem->save();
           
         return response()->json(
@@ -51,13 +51,20 @@ class ComentarioController extends Controller
         ) ;
 
     }
+    public function getComentarios($id)
+    {
+        $comments = ModelComentario::where('post_id', $id)->get();
+
+        // Retorna os comentários em formato JSON
+        return response()->json($comments);
+    }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

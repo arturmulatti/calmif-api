@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModelComentario extends Model
 {
+    use HasFactory;
     protected $table = 'comentario';
-    protected $fillable = ['id_post','conteudo','id_user'];
+    protected $fillable = ['conteudo','post_id'];
+    use HasFactory;
 }

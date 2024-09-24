@@ -18,3 +18,4 @@ Route::post('/cadastroUser', [UserController::class, 'store']);
 Route::post('/LoginEmail', [ValidacaoController::class, 'store']);
 Route::post('/postComentario', [ComentarioController::class, 'store']);
 Route::post('/requestComentario', [RequestComentarioController::class, 'store']);
+Route::patch('/confirmarPost/{id}', [BookController::class, 'aprovarPost']);

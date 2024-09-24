@@ -11,13 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('requestComentario', function (Blueprint $table) {
+        Schema::create('comentario', function (Blueprint $table) {
             $table->increments('id');
             
+            $table->string('conteudo');
+            $table->integer('post_id')->unsigned();
+            $table->boolean('aprovado')->nullable();
+            $table->foreign('post_id')->references("id")->on('post');
+
             
+
             
-            $table->foreignId('id_comentario')->references('id')->on('comentario')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            
+
         });
     }
 
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('requestComentario');
+        Schema::dropIfExists('comentario');
     }
 };
