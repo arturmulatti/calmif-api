@@ -10,3 +10,4 @@ Route::get('/Comentarios', 'App\Http\Controllers\BookController@Comentarios');
 Route::get('/posts/{id}/comments', 'App\Http\Controllers\ComentarioController@getComentarios');
 Route::get('/posts/{texto}/pesquisaPost', 'App\Http\Controllers\BookController@pesquisarPost');
 Route::get('/aprovar', 'App\Http\Controllers\BookController@buscarAprovacao');
+Route::get('/getRelatos', 'App\Http\Controllers\RelatoController@index');

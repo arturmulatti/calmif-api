@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RelatoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
@@ -17,5 +18,6 @@ Route::post('/create', [BookController::class, 'store']);
 Route::post('/cadastroUser', [UserController::class, 'store']);
 Route::post('/LoginEmail', [ValidacaoController::class, 'store']);
 Route::post('/postComentario', [ComentarioController::class, 'store']);
+Route::post('/postRelato', [RelatoController::class, 'store']);
 Route::post('/requestComentario', [RequestComentarioController::class, 'store']);
 Route::patch('/confirmarPost/{id}', [BookController::class, 'aprovarPost']);
